@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Five Crowns 👑</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Baloo+2:wght@500;700;800&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;-webkit-user-select:none;user-select:none}
-html,body{height:100%}
+html{touch-action:manipulation;-webkit-text-size-adjust:100%}
+html,body{min-height:100%}
 body{
-  font-family:'Baloo 2','Comic Sans MS',sans-serif;color:#1b1b2f;overflow:hidden;
+  font-family:'Baloo 2','Comic Sans MS',sans-serif;color:#1b1b2f;overflow-x:hidden;overflow-y:auto;
   background:
     radial-gradient(circle at 15% 20%, rgba(255,255,255,.08) 0 2px, transparent 3px),
     radial-gradient(circle at 80% 10%, rgba(255,255,255,.10) 0 2px, transparent 3px),
@@ -53,7 +54,7 @@ select{font-family:'Baloo 2';font-weight:700;font-size:15px;padding:6px 10px;bor
 .setup-note{font-size:13px;color:#666;margin-top:10px}
 
 /* ---------- GAME LAYOUT ---------- */
-#game{position:fixed;inset:0;display:flex;flex-direction:column}
+#game{display:flex;flex-direction:column;min-height:100vh;min-height:100dvh}
 header{display:flex;align-items:center;gap:12px;padding:8px 14px;flex-wrap:wrap;
   background:rgba(0,0,0,.28);border-bottom:3px solid rgba(0,0,0,.35)}
 header .gametitle{font-family:'Press Start 2P';font-size:13px;color:#ffd83d;text-shadow:2px 2px 0 #1b1b2f}
@@ -100,7 +101,7 @@ header .spacer{flex:1}
 #humanInfo .you.active{background:#fff3bd;box-shadow:0 0 0 3px #ffd83d,0 3px 0 rgba(0,0,0,.4)}
 #deadwoodLbl{font-size:14px;text-shadow:1px 1px 0 rgba(0,0,0,.5)}
 #deadwoodLbl b{color:#ffe066}
-#hand{display:flex;justify-content:center;align-items:flex-end;min-height:128px;padding:14px 6px 4px}
+#hand{display:flex;justify-content:center;align-items:flex-end;flex-wrap:wrap;row-gap:16px;min-height:128px;padding:24px 6px 4px}
 #controls{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:8px;flex-wrap:wrap}
 
 /* ---------- CARDS ---------- */
@@ -182,9 +183,23 @@ table.scoretab{border-collapse:collapse;margin:6px auto;font-size:14px;width:100
 .rules{text-align:left;font-size:15px;line-height:1.55;font-weight:600}
 .rules h4{margin:10px 0 2px;color:#4a2a8f}
 @media (max-width:760px){
-  .card{width:60px;height:86px}.card .big{font-size:33px}
-  #hand .card{margin-left:-26px}
-  .pile,.pile .card{width:66px;height:94px}
+  .card{width:58px;height:84px}.card .big{font-size:31px}
+  .card .corner{font-size:14px}.card .corner span{font-size:11px}
+  #hand .card{margin-left:-24px}
+  #hand .card.sel{transform:translateY(-14px)}
+  .pile,.pile .card{width:64px;height:92px}
+  header{padding:6px 8px;gap:6px}
+  header .gametitle{display:none}
+  .roundchip,.wildchip{font-size:12px;padding:3px 8px}
+  .btn.small{font-size:12px;padding:4px 9px}
+  #opponents{flex-wrap:nowrap;overflow-x:auto;justify-content:flex-start;padding:8px 8px 2px;-webkit-overflow-scrolling:touch}
+  .opp{min-width:104px;padding:4px 8px;flex:none}
+  .opp .ava{font-size:24px}.opp .nm{font-size:12px}
+  #felt{min-height:150px;gap:18px}
+  #felt .table-oval{inset:6px 3vw}
+  #humanInfo{flex-wrap:wrap;gap:6px}
+  #drawer{width:min(340px,92vw)}
+  #controls .btn{font-size:14px;padding:7px 12px}
 }
 </style>
 </head>
