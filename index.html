@@ -149,8 +149,9 @@ header .spacer{flex:1}
 @keyframes bannerIn{0%{transform:translate(-50%,-50%) scale(0)}14%{transform:translate(-50%,-50%) scale(1.15)}22%{transform:translate(-50%,-50%) scale(1)}80%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-50%) scale(1.1)}}
 
 /* ---------- OVERLAYS ---------- */
-.overlay{position:fixed;inset:0;background:rgba(15,15,35,.78);z-index:90;display:flex;align-items:center;justify-content:center;padding:16px}
-.overlay .obox{max-width:min(960px,96vw);max-height:92vh;overflow:auto;padding:22px 26px}
+.overlay{position:fixed;inset:0;background:rgba(15,15,35,.78);z-index:90;display:flex;padding:16px;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain}
+.overlay .obox{margin:auto;width:min(960px,96vw);padding:22px 26px}
+.tabwrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
 .obox h2{font-family:'Press Start 2P';font-size:17px;text-align:center;margin-bottom:14px;color:#4a2a8f}
 .result-row{border:3px solid #1b1b2f;border-radius:14px;padding:8px 12px;margin:8px 0;background:#fff}
 .result-row.winner{background:#e3ffe9}
@@ -167,7 +168,7 @@ table.scoretab{border-collapse:collapse;margin:6px auto;font-size:14px;width:100
 .scoretab td.tot{background:#f1ecff;font-weight:800}
 .scoretab tr.cur td{background:#fff3bd}
 .scoretab .went{color:#2fa84f}
-.obox .obtns{text-align:center;margin-top:14px}
+.obox .obtns{text-align:center;margin-top:14px;position:sticky;bottom:-6px;background:#fffdf2;padding:12px 0;border-radius:12px;box-shadow:0 -6px 12px -8px rgba(0,0,0,.35)}
 
 /* score drawer */
 #drawer{position:fixed;top:0;right:-360px;width:340px;height:100%;z-index:85;transition:right .25s ease;padding:14px;overflow:auto;
@@ -771,7 +772,7 @@ function showGameOver(){
   });
 }
 function scoreTableHTML(){
-  let html='<table class="scoretab"><tr><th>Round</th><th>Cards</th>';
+  let html='<div class="tabwrap"><table class="scoretab"><tr><th>Round</th><th>Cards</th>';
   for(const p of S.players)html+='<th>'+p.emoji+'<br>'+esc(p.name)+'</th>';
   html+='</tr>';
   for(let ri=0;ri<ROUNDS.length;ri++){
@@ -785,7 +786,7 @@ function scoreTableHTML(){
   }
   html+='<tr><td class="tot" colspan="2">TOTAL</td>';
   for(const p of S.players)html+='<td class="tot">'+p.total+'</td>';
-  html+='</tr></table><div style="text-align:center;font-size:12px;color:#777">★ = went out</div>';
+  html+='</tr></table></div><div style="text-align:center;font-size:12px;color:#777">★ = went out</div>';
   return html;
 }
 
